@@ -1,0 +1,433 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;605&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Re-bind Tailwind colors dynamically to our theme variables */
+  --color-black: var(--bg-base);
+  --color-white: var(--bg-card);
+
+  --color-zinc-50: var(--bg-pills-hover);
+  --color-zinc-100: var(--bg-pills);
+  --color-zinc-150: var(--border-subtle);
+  --color-zinc-205: var(--border-color);
+  --color-zinc-300: var(--text-tertiary);
+  --color-zinc-400: var(--text-secondary);
+  --color-zinc-500: var(--text-muted);
+  --color-zinc-650: var(--text-secondary);
+  --color-zinc-800: var(--border-color);
+  --color-zinc-900: var(--bg-panel);
+  --color-zinc-950: var(--bg-card);
+  --color-zinc-955: var(--text-primary);
+
+  /* Red accent overrides to Yellow/Gold colors */
+  --color-red-200: var(--accent-200);
+  --color-red-300: var(--accent-300);
+  --color-red-400: var(--accent-400);
+  --color-red-500: var(--accent-500);
+  --color-red-550: var(--accent-500);
+  --color-red-600: var(--accent-600);
+  --color-red-650: var(--accent-650);
+  --color-red-655: var(--accent-650);
+  --color-red-700: var(--accent-700);
+  --color-red-800: var(--accent-800);
+  --color-red-900: var(--accent-900);
+  --color-red-955: var(--accent-950);
+}
+
+:root {
+  /* LIGHT MODE - Green & Yellow & White */
+  --bg-base: #f4faf7; /* Very light mint/green page background */
+  --bg-card: #ffffff; /* White card / navbar */
+  --bg-panel: #ffffff; /* White sidebar */
+  --bg-pills: #e6f4ea; /* Soft light mint pills */
+  --bg-pills-hover: #d2ebd9; /* Muted mint hover */
+  --bg-pills-active: #34d399; /* Green active pill */
+  
+  --text-primary: #022c22; /* Dark forest green for headers & main text */
+  --text-secondary: #047857; /* Medium green for description text */
+  --text-tertiary: #065f46;
+  --text-muted: #0f766e; /* Muted text */
+  
+  --border-color: #d1fae5; /* Soft green border */
+  --border-subtle: #e6f4ea; /* Very subtle light green border */
+
+  /* Accent: Yellow / Golden Gold */
+  --accent-200: #fef08a;
+  --accent-300: #fde047;
+  --accent-400: #facc15;
+  --accent-500: #eab308;
+  --accent-600: #ca8a04;
+  --accent-650: #ca8a04;
+  --accent-700: #a16207;
+  --accent-800: #854d0e;
+  --accent-900: #e6f4ea; /* Light green background for active tab item */
+  --accent-950: #d1fae5;
+}
+
+[data-theme="dark"] {
+  /* DARK MODE - Dark Green & Yellow */
+  --bg-base: #022c22; /* Deep dark green page background */
+  --bg-card: #011f18; /* Lighter dark green card / navbar */
+  --bg-panel: #011f18; /* Sidebar */
+  --bg-pills: #064e3b; /* Medium green pills */
+  --bg-pills-hover: #086b51; /* Muted teal hover */
+  --bg-pills-active: #0d9488; /* Active pill */
+
+  --text-primary: #ffffff; /* White main text */
+  --text-secondary: #a7f3d0; /* Soft mint secondary text */
+  --text-tertiary: #d1fae5;
+  --text-muted: #14b8a6; /* Muted text */
+
+  --border-color: #064e3b; /* Dark green border */
+  --border-subtle: #023c2a;
+
+  /* Accent: Bright Yellow */
+  --accent-200: #fef08a;
+  --accent-300: #fde047;
+  --accent-400: #facc15;
+  --accent-500: #facc15;
+  --accent-600: #eab308;
+  --accent-650: #fbbf24;
+  --accent-700: #d97706;
+  --accent-800: #b45309;
+  --accent-900: #064e3b; /* Accent background for active tab item */
+  --accent-950: #022c22;
+}
+
+/* Hide scrollbar for category bars but allow swiping */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Slim scrollbar for chat feeds */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 5px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 99px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: var(--bg-pills-hover);
+}
+
+/* Page, main layout and root base styling rules */
+html, body, #vidflow-app-root {
+  background-color: var(--bg-base) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Active links / Buttons dynamic highlights */
+.bg-red-900\/50 {
+  background-color: var(--accent-900) !important;
+  color: var(--accent-500) !important;
+}
+.text-red-300 {
+  color: var(--accent-400) !important;
+}
+
+/* Specific elements background and borders overrides to match themes */
+#vidflow-navbar {
+  background-color: var(--bg-card) !important;
+  border-bottom-color: var(--border-color) !important;
+}
+
+#vidflow-sidebar {
+  background-color: var(--bg-panel) !important;
+  border-right-color: var(--border-color) !important;
+}
+
+#system-toast-alert {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Hover styles override */
+.hover\:bg-zinc-800:hover {
+  background-color: var(--bg-pills-hover) !important;
+}
+.hover\:text-zinc-50:hover {
+  color: var(--text-primary) !important;
+}
+
+/* Video Player must remain black for maximum accessibility & user experience */
+video, .aspect-video, .video-player-bg, [class*="aspect-[9/16]"], .bg-black.rounded-2xl {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+}
+video * {
+  color: #ffffff !important;
+}
+
+/* Search Bar (Lupa) Input styling - White text inside the input */
+#navbar-search-input {
+  font-family: inherit;
+}
+
+html:not([data-theme="dark"]) #navbar-search-input {
+  background-color: #e6f4ea !important;
+  color: #022c22 !important;
+  border-color: #a7f3d0 !important;
+}
+html:not([data-theme="dark"]) #navbar-search-input:focus {
+  background-color: #ffffff !important;
+  color: #022c22 !important;
+}
+
+/* White text in dark mode for typed letters */
+[data-theme="dark"] #navbar-search-input {
+  background-color: #011f18 !important;
+  color: #ffffff !important;
+  border-color: #064e3b !important;
+}
+[data-theme="dark"] #navbar-search-input:focus {
+  background-color: #022c22 !important;
+  color: #ffffff !important;
+}
+
+/* Category Explorer (Todas as Categorias) Button styling - High Visibility */
+#sidebar-tags-explorer-section button {
+  background-color: var(--accent-500) !important;
+  color: #022c22 !important;
+  border: 1px solid var(--accent-600) !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+#sidebar-tags-explorer-section button:hover {
+  background-color: var(--accent-650) !important;
+  color: #ffffff !important;
+  transform: translateY(-1px) !important;
+}
+
+#sidebar-tags-explorer-section button * {
+  color: inherit !important;
+}
+
+/* Category Explorer Tag Boxes - Black Background & White Text */
+#live-tab-container .border-t.border-zinc-100 > div,
+#sidebar-tags-explorer-section .mt-3\.5 > div {
+  background-color: #000000 !important;
+  border: 1px solid #1f2937 !important;
+  color: #ffffff !important;
+}
+
+/* Headings inside black blocks - Accent Yellow */
+#live-tab-container .border-t.border-zinc-100 > div > span,
+#sidebar-tags-explorer-section .mt-3\.5 > div > span {
+  color: var(--accent-400) !important;
+  border-bottom-color: #1f2937 !important;
+}
+
+/* Subheadings inside black blocks - White text & Yellow border */
+#live-tab-container .border-t.border-zinc-100 div > span[class*="text-zinc-"],
+#sidebar-tags-explorer-section .mt-3\.5 div > span[class*="text-zinc-"] {
+  color: #ffffff !important;
+  border-left-color: var(--accent-400) !important;
+}
+
+/* Tag buttons - Black background, White text, Gray borders */
+#live-tab-container .border-t.border-zinc-100 button,
+#sidebar-tags-explorer-section .mt-3\.5 button {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 1px solid #374151 !important;
+}
+
+/* Hover over tag buttons - Highlight Yellow */
+#live-tab-container .border-t.border-zinc-100 button:hover,
+#sidebar-tags-explorer-section .mt-3\.5 button:hover {
+  background-color: var(--accent-500) !important;
+  color: #022c22 !important;
+  border-color: var(--accent-600) !important;
+}
+
+/* Selected active tag buttons - Accent Yellow Background & Dark Green Text */
+#live-tab-container .border-t.border-zinc-100 button.bg-red-650,
+#live-tab-container .border-t.border-zinc-100 button.bg-zinc-950,
+#sidebar-tags-explorer-section .mt-3\.5 button.bg-red-650,
+#sidebar-tags-explorer-section .mt-3\.5 button.bg-zinc-950 {
+  background-color: var(--accent-500) !important;
+  color: #022c22 !important;
+  border-color: var(--accent-600) !important;
+}
+
+/* Criar Canal button styling */
+#navbar-btn-create-channel {
+  background-color: #064e3b !important;
+  color: #ffffff !important;
+  border: 1px solid #086b51 !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+#navbar-btn-create-channel:hover {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #1f2937 !important;
+}
+
+#navbar-btn-create-channel * {
+  color: #ffffff !important;
+}
+
+/* Create Channel Form (#create-channel-form-element) - Black Background & White Text */
+#create-channel-form-element {
+  background-color: #000000 !important;
+  border-color: #1f2937 !important;
+  color: #ffffff !important;
+}
+
+#create-channel-form-element h3,
+#create-channel-form-element label,
+#create-channel-form-element span {
+  color: #ffffff !important;
+}
+
+#create-channel-form-element .bg-zinc-50\/50,
+#create-channel-form-element .bg-zinc-50\/40,
+#create-channel-form-element .bg-red-50\/20,
+#create-channel-form-element .bg-zinc-100 {
+  background-color: #0a0e17 !important; /* dark slate black */
+  border-color: #1f2937 !important;
+  color: #ffffff !important;
+}
+
+/* Inputs, Textareas, Selects - Black Background & White Text when writing */
+#create-channel-form-element input,
+#create-channel-form-element textarea,
+#create-channel-form-element select {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 1px solid #374151 !important;
+}
+
+#create-channel-form-element input::placeholder,
+#create-channel-form-element textarea::placeholder {
+  color: #6b7280 !important; /* clean gray placeholder */
+}
+
+#create-channel-form-element input:focus,
+#create-channel-form-element textarea:focus,
+#create-channel-form-element select:focus {
+  border-color: var(--accent-500) !important;
+  outline: none !important;
+}
+
+/* Emojis buttons grid standard */
+#create-channel-form-element button.w-8.h-8 {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #374151 !important;
+}
+#create-channel-form-element button.w-8.h-8.border-red-650 {
+  background-color: var(--accent-500) !important;
+  color: #000000 !important;
+  border-color: var(--accent-600) !important;
+}
+
+/* Tag buttons and Action buttons inside Create Channel Form */
+#create-channel-form-element button {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 1px solid #374151 !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+/* Hover: Yellow background and Black text */
+#create-channel-form-element button:hover {
+  background-color: var(--accent-500) !important;
+  color: #000000 !important;
+  border-color: var(--accent-600) !important;
+}
+
+/* Selected active tag buttons (Aparência, Atividades, Emojis) */
+#create-channel-form-element button.bg-red-650,
+#create-channel-form-element button.bg-zinc-900,
+#create-channel-form-element button.bg-zinc-950,
+#create-channel-form-element button.border-red-650,
+#create-channel-form-element button.bg-red-50 {
+  background-color: var(--accent-500) !important;
+  color: #000000 !important;
+  border-color: var(--accent-600) !important;
+}
+
+#create-channel-form-element button * {
+  color: inherit !important;
+}
+
+/* Submit and Cancel action buttons at the bottom - Black by default, yellow on hover */
+#create-channel-form-element button[type="submit"],
+#create-channel-form-element .justify-end button {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 1px solid #374151 !important;
+}
+
+#create-channel-form-element button[type="submit"]:hover,
+#create-channel-form-element .justify-end button:hover {
+  background-color: var(--accent-500) !important;
+  color: #000000 !important;
+  border-color: var(--accent-600) !important;
+}
+
+#create-channel-form-element button[type="submit"] *,
+#create-channel-form-element .justify-end button * {
+  color: inherit !important;
+}
+
+/* Global Text Colors Overrides for Dynamic Theme Readability */
+
+/* Dark Mode Global Text Colors */
+[data-theme="dark"] .text-zinc-955,
+[data-theme="dark"] .text-zinc-900,
+[data-theme="dark"] .text-zinc-850,
+[data-theme="dark"] .text-zinc-800,
+[data-theme="dark"] .text-zinc-705,
+[data-theme="dark"] .text-zinc-700,
+[data-theme="dark"] .text-zinc-200,
+[data-theme="dark"] .text-zinc-100 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .text-zinc-650,
+[data-theme="dark"] .text-zinc-605,
+[data-theme="dark"] .text-zinc-600,
+[data-theme="dark"] .text-zinc-500,
+[data-theme="dark"] .text-zinc-450,
+[data-theme="dark"] .text-zinc-400,
+[data-theme="dark"] .text-zinc-300 {
+  color: #cbd5e1 !important; /* Soft white/gray for details and counts */
+}
+
+/* Light Mode Global Text Colors */
+html:not([data-theme="dark"]) .text-zinc-955,
+html:not([data-theme="dark"]) .text-zinc-900,
+html:not([data-theme="dark"]) .text-zinc-850,
+html:not([data-theme="dark"]) .text-zinc-800,
+html:not([data-theme="dark"]) .text-zinc-705,
+html:not([data-theme="dark"]) .text-zinc-700,
+html:not([data-theme="dark"]) .text-zinc-200,
+html:not([data-theme="dark"]) .text-zinc-100 {
+  color: #022c22 !important; /* Dark green for headings */
+}
+
+html:not([data-theme="dark"]) .text-zinc-650,
+html:not([data-theme="dark"]) .text-zinc-605,
+html:not([data-theme="dark"]) .text-zinc-600,
+html:not([data-theme="dark"]) .text-zinc-500,
+html:not([data-theme="dark"]) .text-zinc-450,
+html:not([data-theme="dark"]) .text-zinc-400,
+html:not([data-theme="dark"]) .text-zinc-300 {
+  color: #047857 !important; /* Medium green for descriptions and counts */
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Novinhas Brasileiras",
+  "description": "Uma plataforma de compartilhamento de vídeos completa estilo YouTube com suporte a Início, Shorts, uploads de Vídeos, transmissões ao Vivo interativas com chat simulado e Gerenciamento e Criação de Canais de Usuário.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
